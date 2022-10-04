@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navbar from "./components/Navbar";
+import Card from "./components/Card";
+import data from "./data";
 
-function App() {
+export default function App() {
+  const destinations = data.map((place) => {
+    return (
+      <>
+        <Card
+          key={place.id}
+          title={place.title}
+          location={place.location}
+          googleMapsUrl={place.googleMapsUrl}
+          visitDate={place.visitDate}
+          description={place.description}
+          imageUrl={place.imageUrl}
+        />
+        <hr
+          style={{
+            borderColor: "purple",
+            borderRadius: "50%",
+            margin: "auto",
+          }}
+        />
+      </>
+    );
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar />
+      {destinations}
     </div>
   );
 }
-
-export default App;
